@@ -1,0 +1,19 @@
+version: "2.3"
+
+services:
+
+  keras_beginner:
+    container_name: keras_dev
+    image: keras_world:${VERSION}
+    build: .
+    runtime: nvidia
+    environment:
+      - DISPLAY
+    ipc: host # for GUI
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw  # for GUI access
+      - .:/Keras
+    # keep container alive, for development only (remove later)
+    command: tail -f /dev/null
+    # command: bash -c "python main.py"
+    restart: always
