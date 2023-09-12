@@ -348,7 +348,7 @@ avg_reward_list = []
 
 # Takes about 4 min to train
 for ep in range(total_episodes):
-    prev_state = env.reset()
+    prev_state, _ = env.reset()
     episodic_reward = 0
 
     while True:
@@ -360,7 +360,7 @@ for ep in range(total_episodes):
 
         action = policy(tf_prev_state, ou_noise)
         # Recieve state and reward from environment.
-        state, reward, done, info = env.step(action)
+        state, reward, done, truncated, info = env.step(action)
 
         buffer.record((prev_state, action, reward, state))
         episodic_reward += reward
@@ -370,7 +370,7 @@ for ep in range(total_episodes):
         update_target(target_critic.variables, critic_model.variables, tau)
 
         # End this episode when `done` is True
-        if done:
+        if done or truncated:
             break
 
         prev_state = state
