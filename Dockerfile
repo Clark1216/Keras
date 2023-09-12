@@ -2,7 +2,7 @@
 # ARG ARCH=
 # ARG CUDA=10.0
 # FROM nvidia/cuda${ARCH:+-$ARCH}:${CUDA}-base-ubuntu${UBUNTU_VERSION} as base
-FROM nvcr.io/nvidia/tensorflow:23.07-tf2-py3 as base
+FROM nvcr.io/nvidia/tensorflow:22.11-tf2-py3 as base
 
 # Create a non-root user with low permissions to run container process
 RUN groupadd -g 999 sfmt && useradd -r -u 999 -g sfmt sfmt

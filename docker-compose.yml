@@ -10,6 +10,7 @@ services:
     environment:
       - DISPLAY
     ipc: host # for GUI
+    #working_dir: /Keras/keras/examples/rl
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw  # for GUI access
       - .:/Keras
