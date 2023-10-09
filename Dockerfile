@@ -74,9 +74,11 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
 	libfontconfig1 \
 	libxrender1 \
 	python3-tk \
+	xinput \
 	libcanberra-gtk-module \
 	libcanberra-gtk3-module && \
 	rm -rf /var/lib/apt/lists/*
+
 # Install Python packages
 COPY requirements.txt /
 RUN pip3 install --upgrade pip
