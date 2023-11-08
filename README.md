@@ -63,15 +63,29 @@ Test History:
 | Graphics Card                                                                              | Driver Version | CUDA Version | Tensorflow Version | Results |
 | ----                                                                                       | ----           | ----         | ---- | ---- |
 | [GTX 1080 Ti](https://www.nvidia.com/en-sg/geforce/products/10series/geforce-gtx-1080-ti/) | [390.77 WHQL](https://www.geforce.com/drivers/results/130633)     | 10.0 | 1.13.0, 1.14.0 | Pass (N.A.)
+| [GTX 1080 Ti](https://www.nvidia.com/en-sg/geforce/products/10series/geforce-gtx-1080-ti/) | [390.77 WHQL](https://www.geforce.com/drivers/results/130633)     | 10.0 | 1.13.0, 1.14.0 | TBC
 | [RTX 2080 Ti](https://www.nvidia.com/en-sg/geforce/20-series/) | 510.47  | 10.0 | 1.14.0 | Pass (N.A.)
 | [RTX 3070 Laptop](https://www.nvidia.com/en-us/geforce/gaming-laptops/) | 460.91     | 11.0 | 1.15.0 | Pass (N.A.)
 | [RTX 3070 Laptop](https://www.nvidia.com/en-us/geforce/gaming-laptops/) | 525.125     | 12.0 | 2.14 | TBC
 | [RTX 3090](https://www.nvidia.com/en-sg/geforce/graphics-cards/30-series/rtx-3090/#wtb) | 470.57 | 11.0 | 1.15.0 | Pass (N.A.)
+| [RTX 4090](https://www.nvidia.com/en-sg/geforce/graphics-cards/30-series/rtx-3090/#wtb) | 525.125 | 12.0 | 2.14 | Pass
 
 2. Only linux hosts are supported. Tested on [Ubuntu 18.04 LTS](http://releases.ubuntu.com/18.04/) and [Ubuntu 20.04 LTS](http://releases.ubuntu.com/20.04/) .
 
-3. After installation of the graphics drivers first install [Docker-CE](https://docs.docker.com/install/linux/docker-ce/ubuntu/) and afterwards [nvidia-docker2](https://github.com/NVIDIA/nvidia-docker) following the linked instructions. This is required to run the docker image in a GPU accelerated container. Then, follow the [instructions](https://docs.docker.com/compose/install/) to install `docker-compose`.
+3. Run cmd below to make sure your ubuntu desktop never goes sleep:
+```
+sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
+```
 
+4. After installation of the graphics drivers first install [Docker-CE](https://docs.docker.com/install/linux/docker-ce/ubuntu/) and afterwards [nvidia-docker2](https://github.com/NVIDIA/nvidia-container-toolkit) following the [linked instructions](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html). This is required to run the docker image in a GPU accelerated container. Then, follow the [instructions](https://docs.docker.com/compose/install/) and run ```sudo apt install docker-compose``` to install `docker-compose`.
+
+5. Run and enter the container:
+```
+sudo ./run.sh
+sudo docker exec -it keras_dev bash
+
+```
+Enjoy!
 
 ## First contact with Keras
 
